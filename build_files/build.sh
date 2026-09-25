@@ -37,3 +37,15 @@ rm -f /etc/yum.repos.d/1password.repo /etc/yum.repos.d/brave-browser.repo
 
 ### Services
 systemctl enable tailscaled.service
+
+### Image signature verification
+# Trust this image's cosign key so `bootc switch --enforce-container-sigpolicy` works.
+# The registries.d entry lives in system_files/etc/containers/registries.d/.
+install -Dm644 /ctx/cosign.pub /usr/lib/pki/containers/rklabs-fedora-bluefin.pub
+POLICY=/etc/containers/policy.json
+jq '.transports.docker["ghcr.io/rjkernick/rklabs-fedora-bluefin"] = [{
+        "type": "sigstoreSigned",
+        "keyPath": "/usr/lib/pki/containers/rklabs-fedora-bluefin.pub",
+        "signedIdentity": {"type": "matchRepository"}
+    }]' "$POLICY" > /tmp/policy.json
+mv /tmp/policy.json "$POLICY"
