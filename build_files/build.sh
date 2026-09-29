@@ -32,11 +32,17 @@ curl -fsSLo /etc/yum.repos.d/brave-browser.repo \
     https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 dnf5 install -y brave-browser
 
+### keyd (Mac-style Super+C / Super+V; config in system_files/etc/keyd/default.conf)
+dnf5 -y copr enable alternateved/keyd
+dnf5 install -y keyd
+dnf5 -y copr disable alternateved/keyd
+
 ### Drop third-party repos: updates arrive through image rebuilds, not on the client
 rm -f /etc/yum.repos.d/1password.repo /etc/yum.repos.d/brave-browser.repo
 
 ### Services
 systemctl enable tailscaled.service
+systemctl enable keyd.service
 
 ### Image signature verification
 # Trust this image's cosign key so `bootc switch --enforce-container-sigpolicy` works.
