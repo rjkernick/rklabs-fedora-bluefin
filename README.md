@@ -11,6 +11,7 @@ Everything in `ghcr.io/ublue-os/bluefin-dx:stable` (GNOME, Homebrew, distrobox, 
 | **1Password** + **1Password CLI** | Desktop app, SSH agent and `op`; browser integration needs a native (non-Flatpak) browser |
 | **Brave** (RPM) | Native browser so 1Password browser integration works |
 | `tailscaled` enabled | Tailscale ready on first boot |
+| **keyd** (from the `alternateved/keyd` COPR) | Mac-style Super+C / Super+V copy and paste, mapped to Ctrl+Insert / Shift+Insert so they also work in terminals ([config](system_files/etc/keyd/default.conf)) |
 
 `/opt` is made immutable in the image so 1Password and Brave (which install into `/opt`) survive deployment.
 
