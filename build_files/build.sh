@@ -37,6 +37,9 @@ dnf5 -y copr enable alternateved/keyd
 dnf5 install -y keyd
 dnf5 -y copr disable alternateved/keyd
 
+### f3d (3D model viewer; from the Fedora repos)
+dnf5 install -y f3d
+
 ### Drop third-party repos: updates arrive through image rebuilds, not on the client
 rm -f /etc/yum.repos.d/1password.repo /etc/yum.repos.d/brave-browser.repo
 
