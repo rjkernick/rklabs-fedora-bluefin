@@ -1,0 +1,4 @@
+[Thumbnailer Entry]
+TryExec=/usr/libexec/rklabs-3mf-thumbnailer
+Exec=/usr/libexec/rklabs-3mf-thumbnailer %s %i %o
+MimeType=model/3mf;
