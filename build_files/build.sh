@@ -39,6 +39,9 @@ dnf5 -y copr disable alternateved/keyd
 
 ### f3d (3D model viewer; from the Fedora repos)
 dnf5 install -y f3d
+# 3MF thumbnails go through /usr/libexec/rklabs-3mf-thumbnailer instead, which
+# prefers the slicer's embedded preview; drop 3MF from f3d's entry so they don't compete.
+sed -i 's|model/3mf;\?||' /usr/share/thumbnailers/f3d-plugin-assimp.thumbnailer
 
 ### Drop third-party repos: updates arrive through image rebuilds, not on the client
 rm -f /etc/yum.repos.d/1password.repo /etc/yum.repos.d/brave-browser.repo
